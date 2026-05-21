@@ -5,7 +5,7 @@ local BOMB_SIDES = {
     "bottom",
 }
 
-function output_bomb_sides(redstone_value)
+local function output_bomb_sides(redstone_value)
     for _, side in ipairs(BOMB_SIDES) do
         redstone.setOutput(side, redstone_value)
     end
@@ -13,7 +13,7 @@ end
 
 local THRESHOLD = 0.5
 
-function is_near_zero(vector)
+local function is_near_zero(vector)
 
     for _, v in pairs(vector) do
         if math.abs(v) > THRESHOLD then return false end
@@ -23,9 +23,9 @@ end
 
 while true do
 
-    armed = redstone.getInput("top")
-    v = sublevel.getLinearVelocity()
-    stationary = is_near_zero(v)
+    local armed = redstone.getInput("top")
+    local v = sublevel.getLinearVelocity()
+    local stationary = is_near_zero(v)
 
     if
     armed
