@@ -4,8 +4,8 @@ Expected setup for this script:
 
 - The drone is always facing the way it is moving on the horizontal plane
 - Exactly one redstone relay
-    - Top output stops engine
-    - Craft turns right by default and turns left when bottom output
+    - Left output causes ship to yaw left
+    - Right output causes ship to yaw right
 - Forward-facing optical sensor
 - Wireless modem for GPS
 
@@ -95,10 +95,12 @@ while true do
 
     if isARightOfB(v_2D, to2D(t)) then
         print("Turning left")
-        redstone_relay.setOutput("bottom", true)
+        redstone_relay.setOutput("left", true)
+        redstone_relay.setOutput("left", false)
     else
         print("Turning right")
-        redstone_relay.setOutput("bottom", false)
+        redstone_relay.setOutput("right", false)
+        redstone_relay.setOutput("right", true)
     end
 
     sleep(SLEEP_TIME)
