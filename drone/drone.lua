@@ -57,7 +57,7 @@ local SLEEP_TIME = 1/10
 
 while true do
     -- Determine whether to turn left or right
-    local v = sublevel.getLinearVelocity()
+    local v = sublevel.getLinearVelocity() or {0, 0, 0}
     local v_2D = { v[1], v[3] } -- x and z
 
     if isARightOfB(v_2D, getTargetVelocity()) then
