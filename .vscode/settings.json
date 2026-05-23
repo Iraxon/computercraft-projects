@@ -3,6 +3,7 @@
         "redstone",
         "sublevel",
         "sleep",
-        "peripheral"
+        "peripheral",
+        "vector"
     ]
 }

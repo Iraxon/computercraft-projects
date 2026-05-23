@@ -73,12 +73,17 @@ local function isARightOfB(a_vector_2, b_vector_2)
     return cross > eps
 end
 
+---Converts to 2D list vector
+---@param vector {x: number, y: number, z: number}
+local function to2D(vector)
+    return { vector.x, vector.z }
+end
 --#endregion
 
 local redstone_relay = peripheral.find("redstone_relay")
 
 local function getTargetVelocity()
-    return { 0, 0, -1 }
+    return vector.new(0, 0, -1)
 end
 
 local SLEEP_TIME = 1 / 10
@@ -87,13 +92,12 @@ while true do
     -- Determine whether to turn left or right
     local v = sublevel.getVelocity()
     print("Velocity", v)
-    local v_2D = { v.x, v.z }
-    print("velocity 2D", v_2D)
+    local v_2D = to2D(v)
 
     local t = getTargetVelocity()
     print("Target velocity", t)
 
-    if isARightOfB(v_2D, t) then
+    if isARightOfB(v_2D, to2D(t)) then
         print("Turning left")
         redstone_relay.setOutput("bottom", true)
     else
