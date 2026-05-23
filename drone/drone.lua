@@ -77,7 +77,7 @@ end
 
 local redstone_relay = peripheral.find("redstone_relay")
 
-local function getVelocity()
+local function getTargetVelocity()
     return { 0, 0, -1 }
 end
 
@@ -85,12 +85,14 @@ local SLEEP_TIME = 1 / 10
 
 while true do
     -- Determine whether to turn left or right
-    local v = sublevel.getLinearVelocity()
+    local v = sublevel.getVelocity()
     print("Velocity", v)
     local v_2D = { v.x, v.z }
     print("velocity 2D", v_2D)
 
-    if isARightOfB(v_2D, getVelocity()) then
+    local t = getTargetVelocity()
+
+    if isARightOfB(v_2D, getTargetVelocity()) then
         print("Turning left")
         redstone_relay.setOutput("bottom", true)
     else
