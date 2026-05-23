@@ -38,7 +38,7 @@ end
 ---@generic T : any
 ---@param a T
 ---@param b T
----@param key_fn fun(a: T): boolean
+---@param key_fn fun(a: T): number
 ---@return boolean
 local function greaterThanByKey(a, b, key_fn)
     if key_fn(a) > key_fn(b) then
@@ -51,7 +51,7 @@ end
 ---@param vector_2 [number, number]
 ---@return [number, number]
 local function rotate_90_right(vector_2)
-    return { -vector_2[2], vector_2[1] }
+    return { -1 * vector_2[2], vector_2[1] }
 end
 
 ---Returns if vector A is right (clockwise) of vector B, with some possibility of error
