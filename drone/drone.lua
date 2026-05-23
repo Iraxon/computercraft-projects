@@ -78,7 +78,7 @@ end
 
 local redstone_relay = peripheral.find("redstone_relay")
 
-local function getTargetVelocity()
+local function getVelocity()
     return { 0, 0, -1 }
 end
 
@@ -89,7 +89,7 @@ while true do
     local v = sublevel.getLinearVelocity()
     local v_2D = { v.x, v.z }
 
-    if isARightOfB(v_2D, getTargetVelocity()) then
+    if isARightOfB(v_2D, getVelocity()) then
         -- Turn left
         redstone_relay.setOutput("bottom", true)
     else
