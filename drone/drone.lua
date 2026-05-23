@@ -59,11 +59,19 @@ end
 ---@param b_vector_2 [number, number]
 ---@return boolean
 local function isARightOfB(a_vector_2, b_vector_2)
-    -- A is right of B if rotating A right moves it away from B
-    -- This is not exact, but it is good enough
-    return greaterThanByKey(rotate_90_right(a_vector_2), a_vector_2, function(vec_2)
-        return distance_squared_2(vec_2, b_vector_2)
-    end)
+
+    --Implementation courtesy of ChatGPT
+
+    local ax, ay = a_vector_2[1], a_vector_2[2]
+    local bx, by = b_vector_2[1], b_vector_2[2]
+
+    -- small tolerance to allow for floating-point error
+    local eps = 1e-12
+
+    -- 2D cross product (z component): ax*by - ay*bx
+    -- In a left-handed coordinate system, a is clockwise (right) of b when this cross > 0.
+    local cross = ax * by - ay * bx
+    return cross > eps
 end
 
 --#endregion
