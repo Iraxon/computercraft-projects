@@ -91,8 +91,9 @@ while true do
     print("velocity 2D", v_2D)
 
     local t = getTargetVelocity()
+    print("Target velocity", t)
 
-    if isARightOfB(v_2D, getTargetVelocity()) then
+    if isARightOfB(v_2D, t) then
         print("Turning left")
         redstone_relay.setOutput("bottom", true)
     else
