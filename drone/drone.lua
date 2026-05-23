@@ -54,23 +54,19 @@ local function rotate_90_right(vector_2)
     return { -1 * vector_2[2], vector_2[1] }
 end
 
----Returns if vector A is right (clockwise) of vector B, with some possibility of error
+---Returns if vector A is right (clockwise) of vector B
 ---@param a_vector_2 [number, number]
 ---@param b_vector_2 [number, number]
 ---@return boolean
 local function isARightOfB(a_vector_2, b_vector_2)
     --Implementation courtesy of ChatGPT
 
-    local ax, ay = a_vector_2[1], a_vector_2[2]
-    local bx, by = b_vector_2[1], b_vector_2[2]
+    local ax, az = a_vector_2[1], a_vector_2[2]
+    local bx, bz = b_vector_2[1], b_vector_2[2]
 
-    -- small tolerance to allow for floating-point error
-    local eps = 1e-12
-
-    -- 2D cross product (z component): ax*by - ay*bx
-    -- In a left-handed coordinate system, a is clockwise (right) of b when this cross > 0.
-    local cross = ax * by - ay * bx
-    return cross > eps
+    -- 2D cross product
+    local cross = ax * bz - az * bx
+    return cross > 0
 end
 
 ---Converts to 2D list vector
