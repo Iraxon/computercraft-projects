@@ -11,13 +11,21 @@ Expected setup for this script:
 
 --]]
 
--- Vector utils
+--Vector utils
 --#region
 
+---a^2 + b^2
+---@param a number
+---@param b number
+---@return number
 local function sum_squared(a, b)
     return a * a + b * b
 end
 
+---Distance squared in two dimensions
+---@param a_vector_2 [number, number]
+---@param b_vector_2 [number, number]
+---@return number
 local function distance_squared_2(a_vector_2, b_vector_2)
     local a = a_vector_2
     local b = b_vector_2
@@ -26,6 +34,12 @@ local function distance_squared_2(a_vector_2, b_vector_2)
     return sum_squared(b[X] - a[X], b[Y] - a[Y])
 end
 
+---Returns if key_fn(a) > key_fn(b)
+---@generic T : any
+---@param a T
+---@param b T
+---@param key_fn fun(a: T): boolean
+---@return boolean
 local function greaterThanByKey(a, b, key_fn)
     if key_fn(a) > key_fn(b) then
         return true
@@ -33,15 +47,22 @@ local function greaterThanByKey(a, b, key_fn)
     return false
 end
 
+---Rotate a 2D vector 90 degrees clockwise about the origin
+---@param vector_2 [number, number]
+---@return [number, number]
 local function rotate_90_right(vector_2)
     return { -vector_2[2], vector_2[1] }
 end
 
+---Returns if vector A is right (clockwise) of vector B, with some possibility of error
+---@param a_vector_2 [number, number]
+---@param b_vector_2 [number, number]
+---@return boolean
 local function isARightOfB(a_vector_2, b_vector_2)
     -- A is right of B if rotating A right moves it away from B
     -- This is not exact, but it is good enough
     return greaterThanByKey(rotate_90_right(a_vector_2), a_vector_2, function(vec_2)
-        distance_squared_2(vec_2, b_vector_2)
+        return distance_squared_2(vec_2, b_vector_2)
     end)
 end
 
@@ -53,11 +74,11 @@ local function getTargetVelocity()
     return { 0, 0, -1 }
 end
 
-local SLEEP_TIME = 1/10
+local SLEEP_TIME = 1 / 10
 
 while true do
     -- Determine whether to turn left or right
-    local v = sublevel.getLinearVelocity() or {0, 0, 0}
+    local v = sublevel.getLinearVelocity() or { 0, 0, 0 }
     local v_2D = { v[1], v[3] } -- x and z
 
     if isARightOfB(v_2D, getTargetVelocity()) then
