@@ -59,7 +59,6 @@ end
 ---@param b_vector_2 [number, number]
 ---@return boolean
 local function isARightOfB(a_vector_2, b_vector_2)
-
     --Implementation courtesy of ChatGPT
 
     local ax, ay = a_vector_2[1], a_vector_2[2]
@@ -87,13 +86,15 @@ local SLEEP_TIME = 1 / 10
 while true do
     -- Determine whether to turn left or right
     local v = sublevel.getLinearVelocity()
+    print("Velocity", v)
     local v_2D = { v.x, v.z }
+    print("velocity 2D", v_2D)
 
     if isARightOfB(v_2D, getVelocity()) then
-        -- Turn left
+        print("Turning left")
         redstone_relay.setOutput("bottom", true)
     else
-        -- Turn right
+        print("Turning right")
         redstone_relay.setOutput("bottom", false)
     end
 
