@@ -4,6 +4,8 @@
         "sublevel",
         "sleep",
         "peripheral",
-        "vector"
+        "vector",
+        "gps",
+        "aero"
     ]
 }
