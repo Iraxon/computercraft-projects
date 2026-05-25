@@ -155,7 +155,7 @@ while true do
         print("Continuing straight")
     end
 
-    redstone.setOutput("front", not shouldApplyThrust(v.y, 200))
+    redstone_relay.setOutput("front", not shouldApplyThrust(v.y, 200))
 
     sleep(SLEEP_TIME)
 end
