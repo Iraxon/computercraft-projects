@@ -9,7 +9,7 @@ local altitude_sensor = peripheral.find("altitude_sensor")
 local function shouldApplyThrust(velocity, target_altitude)
     local altitude = altitude_sensor.getHeight()
 
-    if math.abs(altitude - target_altitude) <= 7 then
+    if math.abs(altitude - target_altitude) <= 2 then
         return altitude < target_altitude
     end
 
