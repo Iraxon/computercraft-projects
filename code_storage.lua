@@ -20,3 +20,10 @@ local function lessThanByKey(a, b, key_fn)
     end
     return false
 end
+
+---Rotate a 2D vector 90 degrees clockwise about the origin
+---@param vector_2 [number, number]
+---@return [number, number]
+local function rotate_90_right(vector_2)
+    return { -1 * vector_2[2], vector_2[1] }
+end

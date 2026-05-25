@@ -1,22 +1,39 @@
 local target_altitude = tonumber(...) or 60 -- Command line argument
 
-local gravity = aero.getGravity().y
-local altitude_sensor = peripheral.find("altitude_sensor")
+
+
+--Sublevel GPS
+--region
+
+---Locate the center of mass of this sublevel in global space
+---@return {x: number, y: number, z: number} | nil
+local function locate_sublevel()
+    if sublevel.isInPlotGrid() then
+        return sublevel.getLogicalPose().position()
+    else
+        return nil
+    end
+end
+
+--endregion
+
+
+local GRAVITY = aero.getGravity().y
 
 ---Whether the craft should apply thrust upward right now
----@param velocity number
+---@param vy number
 ---@return boolean
-local function shouldApplyThrust(velocity, target_altitude)
-    local altitude = altitude_sensor.getHeight()
+local function shouldApplyThrust(vy, target_altitude)
+    local altitude = locate_sublevel().y
 
     if math.abs(altitude - target_altitude) <= 2 then
         return altitude < target_altitude
     end
 
-    if velocity < 0 and altitude < target_altitude then
+    if vy < 0 and altitude < target_altitude then
         return true
     end
-    local apex_if_thrust_stopped = altitude + (velocity * velocity) / (-2 * gravity)
+    local apex_if_thrust_stopped = altitude + (vy * vy) / (-2 * GRAVITY)
     return apex_if_thrust_stopped < target_altitude
 end
 
