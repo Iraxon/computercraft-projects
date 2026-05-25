@@ -7,7 +7,7 @@ Expected setup for this script:
     - Left output causes ship to yaw left
     - Right output causes ship to yaw right
     - Both side reduces forward velocity
-    - Bottom output causes ship to move down/fall
+    - Front output causes ship to move down/fall
 - Forward-facing optical sensor
 - Pitch and roll are stabilized
 
@@ -155,7 +155,7 @@ while true do
         print("Continuing straight")
     end
 
-    redstone.setOutput("bottom", not shouldApplyThrust(v.y, 200))
+    redstone.setOutput("front", not shouldApplyThrust(v.y, 200))
 
     sleep(SLEEP_TIME)
 end
