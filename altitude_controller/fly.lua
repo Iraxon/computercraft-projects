@@ -9,7 +9,7 @@ local target_altitude = tonumber(...) or 60 -- Command line argument
 ---@return {x: number, y: number, z: number} | nil
 local function locate_sublevel()
     if sublevel.isInPlotGrid() then
-        return sublevel.getLogicalPose().position()
+        return sublevel.getLogicalPose().position
     else
         return nil
     end
