@@ -6,6 +6,7 @@
         "peripheral",
         "vector",
         "gps",
-        "aero"
+        "aero",
+        "parallel"
     ]
 }
