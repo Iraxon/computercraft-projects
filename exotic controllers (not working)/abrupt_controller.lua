@@ -151,7 +151,7 @@ local function abrupt_controller(error_function, subroutine1, subroutine2)
     local using_first = true
 
     local error = new_delta_value(error_function)
-    local error_delta = new_delta_value(error.smooth_delta)
+    local error_delta = new_delta_value(error.delta)
     local other_subroutine_error_delta = 0
 
     local switch_cooldown = 0 -- In increments of TIME_DELTA
