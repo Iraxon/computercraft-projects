@@ -1,9 +1,13 @@
+---@meta
+
 --- ComputerCraft Vector from standard library
 ---@class Vector
 ---@field x number
 ---@field y number
 ---@field z number
----@field length fun(): number
+---@field length fun(Vector): number
+---@field mul fun(Vector, number): Vector
+---@operator mul(number): Vector
 local Vector = {}
 
 ---Radar track from Create Radars radar.getTracks() method
