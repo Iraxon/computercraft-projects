@@ -7,6 +7,7 @@
         "vector",
         "gps",
         "aero",
-        "parallel"
+        "parallel",
+        "rs"
     ]
 }
